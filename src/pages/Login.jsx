@@ -4,16 +4,27 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
-    const { GoogleLogin } = useContext(AuthContext);
+    const { GoogleLogin, LoginUser, setUser } = useContext(AuthContext);
 
     const handelGoogleLogin = () => {
         GoogleLogin()
-            .then(res => { console.log(res.user); })
+            .then(res => {
+                console.log(res.userF);
+                 setUser(res.user); })
             .catch(error => { console.log(error.code); })
     }
 
-    const handelUserLogin = e =>{
+    const handelUserLogin = e => {
         e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        LoginUser(email, password)
+            .then(res => {
+                setUser(res.user)
+            }).catch(error => {
+                console.log(error.code);
+            })
     }
 
 
@@ -34,7 +45,7 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" placeholder="password" className="input input-bordered" required />
+                        <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
