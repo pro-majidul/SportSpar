@@ -1,12 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { AuthContext } from '../provider/AuthProvider';
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 const Navbar = () => {
 
+    const { user, userLogOut, setUser } = useContext(AuthContext)
     const [theme, setTheme] = useState('light')
 
     const handeltheme = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark')
+    }
+
+    const handelLogOut = () => {
+        userLogOut()
+            .then(res => setUser(res.user))
+            .catch(error => {
+                console.log(error.code);
+            })
     }
 
     useEffect(() => {
@@ -83,7 +94,18 @@ const Navbar = () => {
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </label>
-                <NavLink to='login' className="btn">Login</NavLink>
+                {
+                    user && user ? <div className='flex items-center gap-1'>
+                        <img data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName
+                        } className='h-10 w-10 rounded-full' src={user.
+                            photoURL} alt="" />
+                        <Tooltip id="my-tooltip" />
+                        <button onClick={handelLogOut} className='btn'>Log Out</button>
+                    </div> : <div className='flex items-center gap-1'>
+                        <NavLink to='register' className="btn">Register</NavLink>
+                        <NavLink to='login' className="btn">Login</NavLink>
+                    </div>
+                }
             </div>
         </div>
     );
