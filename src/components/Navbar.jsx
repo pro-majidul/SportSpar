@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -34,18 +35,22 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
+                        <NavLink to='/' className='btn'>Home</NavLink>
+                        <NavLink to='/allRequirements' className='btn'>All Sports Equipment</NavLink>
+                        <NavLink to='/addEquipment' className='btn'>Add Equipment</NavLink>
+                        <NavLink to='/myEquipment' className='btn'>My Equipment</NavLink>
 
-                        <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <NavLink to='/' className="btn btn-ghost text-xl">Sports Spar</NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
+                <ul className="menu menu-horizontal gap-5 px-1">
+                    <NavLink to='/' className='btn'>Home</NavLink>
+                    <NavLink to='/allRequirements' className='btn'>All Sports Equipment</NavLink>
+                    <NavLink to='/addEquipment' className='btn'>Add Equipment</NavLink>
+                    <NavLink to='/myEquipment' className='btn'>My Equipment</NavLink>
 
-                    <li><a>Item 3</a></li>
                 </ul>
             </div>
             <div className="navbar-end">
