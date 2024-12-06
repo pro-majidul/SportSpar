@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -15,15 +16,15 @@ const Register = () => {
         const photo = form.photo.value;
         const password = form.password.value;
         if (password.length < 6) {
-            return alert('password must be 6 charecters')
+            return toast.error('password must be 6 charecters')
         }
         const lowerCaseLetters = /[a-z]/g;
         const upperCaseLetters = /[A-Z]/g;
         if (!password.match(lowerCaseLetters)) {
-            return alert('password must be an lowerCase Letter')
+            return toast.error('password must be an lowerCase Letter')
         }
         if(!password.match(upperCaseLetters)){
-            return alert('password must be an UpperCase Letter')
+            return toast.error('password must be an UpperCase Letter')
         }
         const userInfo = {
             name, email, photo
@@ -32,8 +33,10 @@ const Register = () => {
         CreateUser(email, password)
             .then(res => {
                 console.log(res.user);
+                toast.success('user Register Success')
             }).catch(error => {
                 console.log(error.message);
+                toast.error(`${error.code}`)
             })
 
     }

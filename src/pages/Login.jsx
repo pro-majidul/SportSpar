@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { GoogleLogin, LoginUser, setUser } = useContext(AuthContext);
@@ -9,8 +10,10 @@ const Login = () => {
     const handelGoogleLogin = () => {
         GoogleLogin()
             .then(res => {
-                console.log(res.userF);
-                 setUser(res.user); })
+                console.log(res.user);
+                 setUser(res.user);
+                 toast.success('user login success')
+                 })
             .catch(error => { console.log(error.code); })
     }
 
@@ -21,7 +24,8 @@ const Login = () => {
         const password = form.password.value;
         LoginUser(email, password)
             .then(res => {
-                setUser(res.user)
+                setUser(res.user);
+                toast.success("User Login Success ")
             }).catch(error => {
                 console.log(error.code);
             })
