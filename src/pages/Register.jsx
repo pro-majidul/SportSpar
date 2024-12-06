@@ -4,26 +4,37 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Register = () => {
 
-    const {CreateUser}=useContext(AuthContext)
+    const { CreateUser } = useContext(AuthContext)
 
 
-    const handelUserCreate =e =>{
+    const handelUserCreate = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
-        const userInfo ={
-            name, email,photo
+        if (password.length < 6) {
+            return alert('password must be 6 charecters')
+        }
+        const lowerCaseLetters = /[a-z]/g;
+        const upperCaseLetters = /[A-Z]/g;
+        if (!password.match(lowerCaseLetters)) {
+            return alert('password must be an lowerCase Letter')
+        }
+        if(!password.match(upperCaseLetters)){
+            return alert('password must be an UpperCase Letter')
+        }
+        const userInfo = {
+            name, email, photo
         }
 
-        CreateUser(email , password)
-        .then(res =>{
-            console.log(res.user);
-        }).catch(error =>{
-            console.log(error.message);
-        })
+        CreateUser(email, password)
+            .then(res => {
+                console.log(res.user);
+            }).catch(error => {
+                console.log(error.message);
+            })
 
     }
     return (
@@ -56,7 +67,7 @@ const Register = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                        
+
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Register</button>

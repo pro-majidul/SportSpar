@@ -53,19 +53,19 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <NavLink to='/' className="btn btn-ghost text-xl">Sports Spar</NavLink>
+                <NavLink to='/' className="md:text-3xl md:font-bold text-xl">Sports Spar</NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal gap-5 px-1">
-                    <NavLink to='/' className='btn'>Home</NavLink>
-                    <NavLink to='/allRequirements' className='btn'>All Sports Equipment</NavLink>
-                    <NavLink to='/addEquipment' className='btn'>Add Equipment</NavLink>
-                    <NavLink to='/myEquipment' className='btn'>My Equipment</NavLink>
+                <ul className="menu menu-horizontal gap-3 px-1">
+                    <NavLink to='/' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>Home</NavLink>
+                    <NavLink to='/allRequirements' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>All Sports Equipment</NavLink>
+                    <NavLink to='/addEquipment' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>Add Equipment</NavLink>
+                    <NavLink to='/myEquipment' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>My Equipment</NavLink>
 
                 </ul>
             </div>
-            <div className="navbar-end">
-                <label className="flex cursor-pointer gap-2">
+            <div className="navbar-end gap-1">
+                <label className="flex cursor-pointer md:gap-1">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -100,10 +100,10 @@ const Navbar = () => {
                         } className='h-10 w-10 rounded-full' src={user.
                             photoURL} alt="" />
                         <Tooltip id="my-tooltip" />
-                        <button onClick={handelLogOut} className='btn'>Log Out</button>
+                        <button onClick={handelLogOut} className='px-3 py-1 border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>Log Out</button>
                     </div> : <div className='flex items-center gap-1'>
-                        <NavLink to='register' className="btn">Register</NavLink>
-                        <NavLink to='login' className="btn">Login</NavLink>
+                        <NavLink to='register' className="md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Register</NavLink>
+                        <NavLink to='login' className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Login</NavLink>
                     </div>
                 }
             </div>
