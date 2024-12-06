@@ -7,7 +7,7 @@ const Banner = () => {
         <div className="carousel w-full">
             <div id="slide1" className="carousel-item min-h-[calc(90vh-323px)] relative w-full">
                 <div className="hero bg-gradient-to-r from-black to-slate-500">
-                    <div className="hero-content text-center">
+                    <div className="hero-content md:flex block text-center">
                         <Fade direction='right'>
                             <img src="https://i.ibb.co.com/w7nVZD6/sports.webp" alt="" />
 
@@ -29,7 +29,7 @@ const Banner = () => {
             </div>
             <div id="slide2" className="carousel-item relative w-full">
                 <div className="hero bg-gradient-to-r from-black to-slate-500">
-                    <div className="hero-content text-center">
+                    <div className="hero-content md:flex block text-center">
                         <Fade direction='left'>                        <img src="https://i.ibb.co.com/wCn4sGL/Thrax-Aello-series-shoes.jpg" alt="" />
                         </Fade>
                         <div className="max-w-xl ">
@@ -52,7 +52,7 @@ const Banner = () => {
             <div id="slide3" className="carousel-item relative w-full">
                 <div className="hero bg-gradient-to-r from-slate-100 to-slate-500 ">
 
-                    <div className="hero-content text-center">
+                    <div className="hero-content md:flex block text-center">
                         <Fade direction='left'><img src="https://i.ibb.co.com/7tdZkVC/360-F-286767786-bo-XM75-PDLYIs-YWzab-Z3f-Kc-M3esv50-TNS.jpg" alt="" /></Fade>
                         <div className="max-w-xl">
                             <Fade direction='left'>
