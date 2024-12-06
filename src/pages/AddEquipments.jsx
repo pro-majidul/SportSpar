@@ -71,14 +71,14 @@ const AddEquipments = () => {
                             <label className="label">
                                 <span className="label-text">User Email</span>
                             </label>
-                            <input defaultValue={user.email} readOnly name="email" type="email" placeholder="Enter User Email" className="input input-bordered" required />
+                            <input defaultValue={user?.email} readOnly name="email" type="email" placeholder="Enter User Email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">User Name</span>
                             </label>
                             <input readOnly
-                             defaultValue={user.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
+                             defaultValue={user?.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
                         </div>
                     </div>
                     <div className="form-control">

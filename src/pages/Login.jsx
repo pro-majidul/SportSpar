@@ -9,11 +9,23 @@ const Login = () => {
 
     const handelGoogleLogin = () => {
         GoogleLogin()
-            .then(res => {
-                console.log(res.user);
-                 setUser(res.user);
-                 toast.success('user login success')
-                 })
+            .then(result => {
+                console.log(result.user);
+                
+                fetch('http://localhost:5000/user', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(result.user)
+                })
+                .then(res => res.json())
+                .then(data => {
+                        toast.success('user login success')
+                        console.log(data);
+                        setUser(data)
+                    })
+            })
             .catch(error => { console.log(error.code); })
     }
 
@@ -22,10 +34,25 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        const info = {
+            email, password
+        }
         LoginUser(email, password)
-            .then(res => {
-                setUser(res.user);
-                toast.success("User Login Success ")
+            .then(result => {
+                fetch('http://localhost:5000/user', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(info)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        setUser(data)
+                        toast.success("User Login Success ")
+                    })
+
             }).catch(error => {
                 console.log(error.code);
             })

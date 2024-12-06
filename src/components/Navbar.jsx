@@ -57,10 +57,10 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal gap-3 px-1">
-                    <NavLink to='/' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>Home</NavLink>
-                    <NavLink to='/allRequirements' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>All Sports Equipment</NavLink>
-                    <NavLink to='/addEquipment' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>Add Equipment</NavLink>
-                    <NavLink to='/myEquipment' className='px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>My Equipment</NavLink>
+                    <NavLink to='/' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Home</NavLink>
+                    <NavLink to='/allRequirements' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>All Sports Equipment</NavLink>
+                    <NavLink to='/addEquipment' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Add Equipment</NavLink>
+                    <NavLink to='/myEquipment' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>My Equipment</NavLink>
 
                 </ul>
             </div>
@@ -96,11 +96,10 @@ const Navbar = () => {
                 </label>
                 {
                     user && user ? <div className='flex items-center gap-1'>
-                        <img data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName
-                        } className='h-10 w-10 rounded-full' src={user.
-                            photoURL} alt="" />
+                        <img data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName
+                        } className='h-10 w-10 rounded-full hidden md:block' src={user?.photoURL} alt="" />
                         <Tooltip id="my-tooltip" />
-                        <button onClick={handelLogOut} className='px-3 py-1 border border-1 rounded-xl bg-gray-200 hover:bg-green-500'>Log Out</button>
+                        <button onClick={handelLogOut} className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Log Out</button>
                     </div> : <div className='flex items-center gap-1'>
                         <NavLink to='register' className="md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Register</NavLink>
                         <NavLink to='login' className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Login</NavLink>

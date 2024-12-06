@@ -6,6 +6,8 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import AddEquipments from '../pages/AddEquipments';
+import AllProducts from '../pages/AllProducts';
+import MyEquipments from '../pages/MyEquipments';
 
 const Routes = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const Routes = createBrowserRouter([
       {
         path: '/addEquipment',
         element: <AddEquipments></AddEquipments>
+      },
+      {
+        path : '/allRequirements',
+        element : <AllProducts></AllProducts>
+      },
+      {
+        path : '/myEquipment', 
+        element : <MyEquipments></MyEquipments>
       }
     ],
   }

@@ -9,7 +9,7 @@ const MainLayouts = () => {
            <nav className='w-11/12 mx-auto'>
             <Navbar></Navbar>
            </nav>
-           <main className='w-11/12 mx-auto '>
+           <main className='w-11/12 mx-auto min-h-[calc(100vh-232px)]'>
             <Outlet></Outlet>
            </main>
            <footer>
