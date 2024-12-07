@@ -1,27 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
-    const browser = [1, 2, 3, 4, 5, 6]
+
+    const [browser, setBrowser] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/product')
+            .then(res => res.json())
+            .then(data => {
+                const items = data.slice(0, 6);
+                setBrowser(items)
+               
+            })
+    }, [])
+
+    console.log(browser);
     return (
-        <div>
-            <h3 className='md:text-4xl my-3 text-center underline-offset-8 underline font-semibold text-red-400'>Products</h3>
-            <div className='md:grid grid-cols-3 py-3 my-3 gap-6'>
-                {
-                    browser.map(brows => <div  className="card card-compact bg-base-100  shadow-xl">
-                        <figure>
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                            <h2 className="card-title">Shoes!</h2>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
-                            <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>)
-                }
+        // <div>
+        //     <h3 className='md:text-4xl my-3 text-center underline-offset-8 underline font-semibold text-red-400'>Products</h3>
+        //     <div className='md:grid grid-cols-3 py-3 my-3 gap-6'>
+        //         {
+        //             browser.map(brows => <div  className="card card-compact bg-base-100  shadow-xl">
+        //                 <figure>
+        //                     <img
+        //                         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+        //                         alt="Shoes" />
+        //                 </figure>
+        //                 <div className="card-body">
+        //                     <h2 className="card-title">Shoes!</h2>
+        //                     <p>If a dog chews shoes whose shoes does he choose?</p>
+        //                     <div className="card-actions justify-end">
+        //                         <button className="btn btn-primary">Buy Now</button>
+        //                     </div>
+        //                 </div>
+        //             </div>)
+        //         }
+        //     </div>
+        // </div>
+        <div className="container mx-auto p-6">
+            <h2 className="text-2xl font-bold text-center mb-6">Our Products</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {browser.map((product) => (
+                    <div key={product._id} className="border p-4 rounded-lg shadow-lg">
+                        <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
+                        <h3 className="text-xl font-bold">Product : {product.item}</h3>
+                        <p className="text-gray-700">Price :  {product.prize} TK</p>
+                        <Link to={`/details/${product._id}`}>
+                            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                View Details
+                            </button>
+                        </Link>
+                    </div>
+                ))}
             </div>
         </div>
     );
