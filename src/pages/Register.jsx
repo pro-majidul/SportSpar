@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Register = () => {
 
-    const { CreateUser } = useContext(AuthContext)
+    const { CreateUser, userLogOut,setUser, updateUserProfile } = useContext(AuthContext)
+
+    const navigate = useNavigate()
 
 
     const handelUserCreate = e => {
@@ -23,17 +25,46 @@ const Register = () => {
         if (!password.match(lowerCaseLetters)) {
             return toast.error('password must be an lowerCase Letter')
         }
-        if(!password.match(upperCaseLetters)){
+        if (!password.match(upperCaseLetters)) {
             return toast.error('password must be an UpperCase Letter')
         }
-        const userInfo = {
-            name, email, photo
-        }
+
 
         CreateUser(email, password)
             .then(res => {
+                // setUser(res.user);
+                updateUserProfile(name, photo)
+                    .then(result => {
+                        console.log(result);
+                    }).catch(error => {
+                        console.log(error.message);
+                    })
                 console.log(res.user);
-                toast.success('user Register Success')
+
+
+                const userInfo = { email, photo, name }
+                fetch('http://localhost:5000/user', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(userInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        toast.success('user Register success')
+                        console.log(data);
+                        setUser(data)
+                        navigate('/login')
+                        userLogOut()
+                        .then(result =>setUser(result.user))
+                        .catch(error=>{
+                            console.log(error);
+                        })
+                        
+                    })
+
+               
             }).catch(error => {
                 console.log(error.message);
                 toast.error(`${error.code}`)

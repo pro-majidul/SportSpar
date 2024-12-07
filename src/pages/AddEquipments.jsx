@@ -4,15 +4,34 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const AddEquipments = () => {
-    const { user} = useContext(AuthContext)
-    
+    const { user } = useContext(AuthContext)
+
+
+    const handelAddEquipments = (e) => {
+        e.preventDefault();
+
+        const form = e.target ;
+        const item = form.item.value;
+        const category = form.category.value;
+        const descriptions =form.descriptions.value;
+        const rating =parseInt(form.rating.value) ;
+        const prize = parseInt(form.Prize.value);
+        const delivary =form.delivery.value;
+        const stack = parseInt(form.stack.value);
+        const useremail = form.email.value;
+        const username= form.username.value;
+        const info ={item, category,descriptions,rating,prize,delivary,stack, useremail , username};
+        console.log(info);
+
+    }
+
     return (
         <div className=" p-10">
             <Link to='/' className="flex items-center  py-4"> <FaLongArrowAltLeft />Back To Home </Link>
             <div className="bg-[#F4F3F0] p-10">
                 <h3 className="text-xl md:text-3xl font-bold text-[#374151] text-center">Add Equipments</h3>
 
-                <form  >
+                <form onSubmit={handelAddEquipments}>
                     <div className="md:grid md:grid-cols-2 md:gap-10">
                         <div className="form-control">
                             <label className="label">
@@ -42,13 +61,13 @@ const AddEquipments = () => {
                             <label className="label">
                                 <span className="label-text">Prize</span>
                             </label>
-                            <input name="Prize" type="number" placeholder="Enter Prize" className="input input-bordered" required />
+                            <input name="Prize" type="text" placeholder="Enter Prize" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Delivary Time</span>
                             </label>
-                            <input name="delivary" type="text" placeholder="Enter deleviry time" className="input input-bordered" required />
+                            <input name="delivery" type="text" placeholder="Enter deleviry time" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -78,7 +97,7 @@ const AddEquipments = () => {
                                 <span className="label-text">User Name</span>
                             </label>
                             <input readOnly
-                             defaultValue={user?.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
+                                defaultValue={user?.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
                         </div>
                     </div>
                     <div className="form-control">

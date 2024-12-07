@@ -1,30 +1,39 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Login = () => {
     const { GoogleLogin, LoginUser, setUser } = useContext(AuthContext);
-
+    const location = useLocation()
+    const nevigate = useNavigate()
     const handelGoogleLogin = () => {
         GoogleLogin()
             .then(result => {
                 console.log(result.user);
-                
-                fetch('http://localhost:5000/user', {
-                    method: "POST",
+                const name = result.user?.displayName;
+                const email = result.user?.email;
+                const photo = result.user?.photoURL;
+                const Userinfo = { name, email, photo }
+                console.log(Userinfo);
+
+                fetch(`http://localhost:5000/user/${email}`, {
+                    method: "PUT",
                     headers: {
                         "content-type": "application/json"
                     },
-                    body: JSON.stringify(result.user)
+                    body: JSON.stringify(Userinfo)
                 })
-                .then(res => res.json())
-                .then(data => {
+                    .then(res => res.json())
+                    .then(data => {
                         toast.success('user login success')
                         console.log(data);
-                        setUser(data)
+
+
                     })
+                setUser(result.user)
+                nevigate(location.state ? location.state : '/')
             })
             .catch(error => { console.log(error.code); })
     }
@@ -34,27 +43,15 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const info = {
-            email, password
-        }
+
         LoginUser(email, password)
             .then(result => {
-                fetch('http://localhost:5000/user', {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(info)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        setUser(data)
-                        toast.success("User Login Success ")
-                    })
-
+                toast.success("User Login Success ")
+                setUser(result.user)
+                form.reset()
+                nevigate(location.state ? location.state : '/')
             }).catch(error => {
-                console.log(error.code);
+                toast.error(`${error.code}`)
             })
     }
 

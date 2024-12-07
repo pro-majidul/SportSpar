@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import { toast } from 'react-toastify';
 const Navbar = () => {
 
     const { user, userLogOut, setUser } = useContext(AuthContext)
@@ -14,7 +15,10 @@ const Navbar = () => {
 
     const handelLogOut = () => {
         userLogOut()
-            .then(res => setUser(res.user))
+            .then(res => {
+                toast.success('user log-out success')
+                setUser(res.user)
+            })
             .catch(error => {
                 console.log(error.code);
             })
@@ -96,7 +100,7 @@ const Navbar = () => {
                 </label>
                 {
                     user && user ? <div className='flex items-center gap-1'>
-                        <img data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName
+                        <img referrerPolicy='no-referrer' data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName
                         } className='h-10 w-10 rounded-full hidden md:block' src={user?.photoURL} alt="" />
                         <Tooltip id="my-tooltip" />
                         <button onClick={handelLogOut} className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Log Out</button>
