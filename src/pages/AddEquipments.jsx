@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { toast } from 'react-toastify';
 
 const AddEquipments = () => {
     const { user } = useContext(AuthContext)
@@ -17,13 +18,14 @@ const AddEquipments = () => {
         const item = form.item.value;
         const category = form.category.value;
         const descriptions = form.descriptions.value;
-        const rating = parseInt(form.rating.value);
+        const rating = parseFloat(form.rating.value);
         const prize = parseInt(form.Prize.value);
         const delivary = deliveryDate;
+        const customization = form.customization.value;
         const stack = parseInt(form.stack.value);
         const useremail = form.email.value;
         const username = form.username.value;
-        const info = { item, category, descriptions, rating, prize, delivary, stack, useremail, username };
+        const info = { item, category, descriptions, rating, customization, prize, delivary, stack, useremail, username };
         console.log(info);
 
 
@@ -35,6 +37,7 @@ const AddEquipments = () => {
             body: JSON.stringify(info)
         }).then(res => res.json()).then(data => {
             console.log(data);
+            toast.success('Equipment Added SuccessFull')
         })
 
     }
@@ -55,10 +58,20 @@ const AddEquipments = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Category Name</span>
+                                <span className="label-text">Category</span>
                             </label>
-                            <input name="category" type="text" placeholder="Enter Category Name" className="input input-bordered" required />
-                        </div> <div className="form-control">
+                            <select name="category" className="select select-bordered w-full" required>
+                                <option value="" disabled selected>
+                                    Select Category
+                                </option>
+                                <option value="Bat">Bat</option>
+                                <option value="Ball">Ball</option>
+                                <option value="jersy">Jersy</option>
+                                <option value="shoes">Shoes</option>
+                                <option value="batminton">Batminton</option>
+                            </select>
+                        </div>
+                        <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Descriptions</span>
                             </label>
@@ -94,19 +107,25 @@ const AddEquipments = () => {
                             <label className="label">
                                 <span className="label-text">Stock Status </span>
                             </label>
-                            <input name="stack" type="text" placeholder="Enter Quentity" className="input input-bordered" required />
+                            <input name="stack" type="text" placeholder="Enter Available Product Quentity" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Customization </span>
+                                <span className="label-text">Customization</span>
                             </label>
-                            <select className="select select-bordered w-full ">
-                                <option disabled selected>Customization</option>
-                                <option>Bat With Extra Grip</option>
-                                <option>Hit paper</option>
+                            <select name="customization" className="select select-bordered w-full" required>
+                                <option value="" disabled selected>
+                                    Select Customization
+                                </option>
+                                <option value="Bat With Extra Grip">Bat With Extra Grip</option>
+                                <option value="Hit Paper">Hit Paper</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                                <option value="size 44">Size 44</option>
+                                <option value="size 43">Size 43</option>
+                                <option value="size 42">Size 42</option>
+                                <option value="Extra Grip">Extra Grip</option>
                             </select>
-
-
                         </div>
                         <div className="form-control">
                             <label className="label">
