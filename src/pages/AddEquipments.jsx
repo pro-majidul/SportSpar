@@ -20,12 +20,13 @@ const AddEquipments = () => {
         const descriptions = form.descriptions.value;
         const rating = parseFloat(form.rating.value);
         const prize = parseInt(form.Prize.value);
-        const delivary = deliveryDate;
+        const delivary = deliveryDate ? deliveryDate.toISOString().split("T")[0] : null;
         const customization = form.customization.value;
         const stack = parseInt(form.stack.value);
         const useremail = form.email.value;
         const username = form.username.value;
-        const info = { item, category, descriptions, rating, customization, prize, delivary, stack, useremail, username };
+        const photo = form.photo.value;
+        const info = { item, category, descriptions, rating, customization, prize, delivary, stack, useremail, username, photo };
         console.log(info);
 
 

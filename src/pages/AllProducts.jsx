@@ -3,8 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const AllProducts = () => {
     const loadedProducts = useLoaderData();
-    console.log(loadedProducts);
-
+    
     const [allProduct, setAllProduct] = useState(loadedProducts)
     return (
         <div className='my-3 py-3'>
@@ -30,7 +29,7 @@ const AllProducts = () => {
                                     category}</td>
                                 <td>{product.prize}</td>
                                 <td className='md:space-x-3 space-y-2'>
-                                    <Link>
+                                    <Link to={`/details/${product._id}`}>
                                         <button className="md:btn-lg btn btn-sm">View Details</button></Link>
                                 </td>
                             </tr>)
