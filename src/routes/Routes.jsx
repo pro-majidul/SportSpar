@@ -29,11 +29,13 @@ const Routes = createBrowserRouter([
       },
       {
         path: '/addEquipment',
-        element: <AddEquipments></AddEquipments>
+        element: <AddEquipments></AddEquipments>,
+
       },
       {
         path : '/allRequirements',
-        element : <AllProducts></AllProducts>
+        element : <AllProducts></AllProducts>,
+        loader : ()=>fetch('http://localhost:5000/product')
       },
       {
         path : '/myEquipment', 
