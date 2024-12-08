@@ -5,7 +5,7 @@ const Blogs = () => {
     const [blogs, setBlogs] = useState([])
     const [loader , setLoader] =useState(true)
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://equi-sports-server-side-omega.vercel.app/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlogs(data)

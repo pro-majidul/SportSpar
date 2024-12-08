@@ -7,7 +7,7 @@ const AllProducts = () => {
     const [loader, setLoader] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://equi-sports-server-side-omega.vercel.app/products')
             .then(res => res.json())
             .then(data => {
 

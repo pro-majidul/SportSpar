@@ -43,7 +43,7 @@ const Register = () => {
 
 
                 const userInfo = { email, photo, name }
-                fetch('http://localhost:5000/user', {
+                fetch('https://equi-sports-server-side-omega.vercel.app/user', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

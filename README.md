@@ -2,7 +2,7 @@
 
 **SportsSpar** is an online platform where customers can browse, purchase, and review various sports accessories, from gear to apparel. Catering to athletes and sports enthusiasts, EquiSports offers a seamless shopping experience with a wide range of products, user authentication, and a smooth, responsive design.
 
-[Visit the live site](https://your-live-site-url.com)
+[Visit the live site](https://equisports-client-side.web.app/)
 
 ## Features
 - **User Authentication**: Register, login, and manage user accounts with email/password or OAuth (Google, GitHub).

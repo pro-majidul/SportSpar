@@ -30,7 +30,7 @@ const AddEquipments = () => {
         console.log(info);
 
 
-        fetch('http://localhost:5000/product', {
+        fetch('https://equi-sports-server-side-omega.vercel.app/product', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

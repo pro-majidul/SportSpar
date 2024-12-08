@@ -17,7 +17,7 @@ const UpdateEquipment = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://equi-sports-server-side-omega.vercel.app/products/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setEquipment(data);
@@ -59,7 +59,7 @@ const UpdateEquipment = () => {
             customization,
         };
 
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://equi-sports-server-side-omega.vercel.app/product/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedInfo),

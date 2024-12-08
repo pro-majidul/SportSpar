@@ -11,7 +11,7 @@ const MyEquipments = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${user.email}`)
+        fetch(`https://equi-sports-server-side-omega.vercel.app/product/${user.email}`)
             .then(res => res.json())
             .then(data =>
             {
@@ -39,7 +39,7 @@ const MyEquipments = () => {
             confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/product/${id}`, {
+                fetch(`https://equi-sports-server-side-omega.vercel.app/product/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

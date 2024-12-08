@@ -18,7 +18,7 @@ const Login = () => {
                 const Userinfo = { name, email, photo }
                 console.log(Userinfo);
 
-                fetch(`http://localhost:5000/user/${email}`, {
+                fetch(`https://equi-sports-server-side-omega.vercel.app/user/${email}`, {
                     method: "PUT",
                     headers: {
                         "content-type": "application/json"

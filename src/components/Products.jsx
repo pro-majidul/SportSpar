@@ -6,7 +6,7 @@ const Products = () => {
     const [browser, setBrowser] = useState([])
     const [loader , setLoader]= useState(true)
     useEffect(() => {
-        fetch('http://localhost:5000/product')
+        fetch('https://equi-sports-server-side-omega.vercel.app/product')
             .then(res => res.json())
             .then(data => {
                 setBrowser(data)
