@@ -61,7 +61,7 @@ const MyEquipments = () => {
 
                     equipments.length == 0 ? <div className='flex items-center justify-center min-h-[calc(90vh-323px)]'><p className="text-2xl font-bold text-center mb-6">No Data added</p></div> :
                         equipments.map(equipment => (
-                            <div key={equipment._id} className="card bg-white shadow-md rounded-lg p-4">
+                            <div key={equipment._id} className="card transition hover:scale-105 bg-white shadow-md rounded-lg p-4">
                                 <img src={equipment.photo} alt={equipment.item} className="w-full h-40 object-cover rounded-lg mb-4" />
                                 <h3 className="text-lg font-bold">{equipment.item}</h3>
                                 <p className="text-sm text-gray-600">Category: {equipment.category}</p>

@@ -51,7 +51,7 @@ const AllProducts = () => {
                     <tbody>
 
                         {
-                            allProduct.length == 0 ? <p className='md:text-3xl font-bold text-center my-3 py-3'>Data Not Added</p> : allProduct.map((product, idx) => <tr className='md:text-base text-sm'>
+                            allProduct.length == 0 ? <p className='md:text-3xl font-bold text-center my-3 py-3'>Data Not Added</p> : allProduct.map((product, idx) => <tr className='md:text-base transition hover:bg-slate-500 text-sm'>
                                 <th>{idx + 1}</th>
                                 <td>{product.item}</td>
                                 <td>{product.

@@ -27,7 +27,7 @@ const Products = () => {
             <h2 className="text-2xl md:text-4xl text-orange-600 underline underline-offset-8 font-bold text-center mb-6">Our Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {browser.map((product) => (
-                    <div key={product._id} className="border p-4 rounded-lg shadow-lg">
+                    <div key={product._id} className="border transition hover:scale-105 p-4 rounded-lg shadow-lg">
                         <img src={product.photo} alt={product.name} className="w-full h-48 object-cover mb-4" />
                         <h3 className="text-xl font-bold">Product : {product.item}</h3>
                         <p className="text-gray-700">Price :  {product.prize} TK</p>

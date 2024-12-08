@@ -11,8 +11,8 @@ const Chose = () => {
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                  
-                    <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+
+                    <div className="flex flex-col items-center transition hover:scale-105 bg-white p-6 rounded-lg shadow-lg">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdX5VZxGMoVwGqu0FkYbG03reLhcdofSsoGw&s" alt="Quality" className="w-24 h-24 mb-4" />
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">High-Quality Gear</h3>
                         <p className="text-gray-600 text-center">
@@ -20,8 +20,8 @@ const Chose = () => {
                         </p>
                     </div>
 
-                
-                    <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+
+                    <div className="flex flex-col items-center transition hover:scale-105 bg-white p-6 rounded-lg shadow-lg">
                         <img src="https://png.pngtree.com/element_our/png/20180921/a-girl-riding-a-pink-delivery-scooter-png_105783.jpg" alt="Fast Delivery" className="w-24 h-24 mb-4" />
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Fast Delivery</h3>
                         <p className="text-gray-600 text-center">
@@ -29,8 +29,8 @@ const Chose = () => {
                         </p>
                     </div>
 
-               
-                    <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+
+                    <div className="flex flex-col items-center transition hover:scale-105 bg-white p-6 rounded-lg shadow-lg">
                         <img src="https://wpklik.com/wp-content/uploads/2019/01/Customize-Option-in-WordPress.jpg" alt="Customization" className="w-24 h-24 mb-4" />
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Customization Options</h3>
                         <p className="text-gray-600 text-center">
@@ -38,8 +38,8 @@ const Chose = () => {
                         </p>
                     </div>
 
-              
-                    <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+
+                    <div className="flex flex-col items-center transition hover:scale-105 bg-white p-6 rounded-lg shadow-lg">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Vm9pRU3kIIhWEZA8Au98Y3yKND9pxuNGAQ&s" alt="Support" className="w-24 h-24 mb-4" />
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Excellent Customer Support</h3>
                         <p className="text-gray-600 text-center">
@@ -47,8 +47,8 @@ const Chose = () => {
                         </p>
                     </div>
 
-                
-                    <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+
+                    <div className="flex flex-col items-center transition hover:scale-105 bg-white p-6 rounded-lg shadow-lg">
                         <img src="https://static.vecteezy.com/system/resources/previews/023/104/177/non_2x/competitive-pricing-rubber-grunge-stamp-seal-vector.jpg" alt="Competitive Prices" className="w-24 h-24 mb-4" />
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Competitive Prices</h3>
                         <p className="text-gray-600 text-center">
@@ -56,7 +56,7 @@ const Chose = () => {
                         </p>
                     </div>
 
-                    <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+                    <div className="flex flex-col items-center transition hover:scale-105 bg-white p-6 rounded-lg shadow-lg">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST02OgkpSQv0uWaDm_AcNcSSC6HRoHVQVx9Q&s" alt="Secure Shopping" className="w-24 h-24 mb-4" />
                         <h3 className="text-xl font-semibold text-blue-600 mb-2">Secure Shopping</h3>
                         <p className="text-gray-600 text-center">

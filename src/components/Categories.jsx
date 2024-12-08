@@ -29,7 +29,7 @@ const Categories = () => {
             <div className='text-center space-x-4 py-3 my-3 '>
                 <div className='grid md:grid-cols-3 gap-5 '>
                     {
-                        categories && categories.map(category => <div className="card bg-base-100  shadow-xl">
+                        categories && categories.map(category => <div className="card transition hover:scale-105 bg-base-100  shadow-xl">
                             <figure>
                                 <img className='max-h-44 w-full'
                                     src={category.image}
