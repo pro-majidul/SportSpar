@@ -3,22 +3,28 @@ import React, { useEffect, useState } from 'react';
 const Blogs = () => {
 
     const [blogs, setBlogs] = useState([])
+    const [loader , setLoader] =useState(true)
     useEffect(() => {
         fetch('http://localhost:5000/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlogs(data)
+                setLoader(false)
+            })
+            .catch(error =>{
+                console.log(error);
+                setLoader(false)
             })
     }, [])
 
-    if (blogs.length < 1) {
+    if (loader) {
         return <span className="loading loading-bars loading-lg"></span>
     }
 
     return (
         <div className="py-10">
             <div className="container mx-auto">
-                <h2 className="text-2xl font-bold text-center mb-6">Latest Articles</h2>
+                <h2 className="text-2xl md:text-4xl underline underline-offset-8 text-orange-400 font-bold text-center mb-6">Latest Articles</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {blogs.map((blog) => (
                         <div
@@ -26,7 +32,7 @@ const Blogs = () => {
                             className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition"
                         >
                             <img
-                                src={blog.image}
+                                src={blog?.image}
                                 alt={blog.title}
                                 className="w-full h-48 object-cover rounded mb-4"
                             />
