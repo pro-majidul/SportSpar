@@ -4,7 +4,7 @@ const Chose = () => {
     return (
         <section className="bg-blue-50 py-12 px-4 md:px-12">
             <div className="max-w-screen-xl mx-auto text-center">
-                <h2 className="text-3xl font-bold text-blue-600 mb-6">Why Choose EquiSports?</h2>
+                <h2 className="text-3xl font-bold text-blue-600 mb-6">Why Choose SportsSpar?</h2>
                 <p className="text-xl mb-8 text-gray-700">
                     SportsSpar is more than just a sports equipment store; we're your trusted partner in achieving peak performance.
                     Here's why thousands of athletes and sports enthusiasts choose us:

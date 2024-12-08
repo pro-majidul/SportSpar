@@ -32,8 +32,8 @@ const Routes = createBrowserRouter([
       },
       {
         path: '/addEquipment',
-        element: <AddEquipments></AddEquipments>,
-
+        element: <Private><AddEquipments></AddEquipments>
+        </Private>
       },
       {
         path: '/allRequirements',
@@ -44,7 +44,7 @@ const Routes = createBrowserRouter([
         element: <Private><MyEquipments></MyEquipments></Private>
       },
       {
-        path : '/updateEquipment/:id',
+        path: '/updateEquipment/:id',
         element: <Private> <UpdateEquipment></UpdateEquipment> </Private>
       },
       {
