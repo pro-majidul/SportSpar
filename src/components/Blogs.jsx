@@ -19,7 +19,7 @@ const Blogs = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {blogs.map((blog) => (
                         <div
-                            key={blog.id}
+                            key={blog._id}
                             className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition"
                         >
                             <img

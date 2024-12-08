@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
     const { GoogleLogin, LoginUser, setUser } = useContext(AuthContext);
     const location = useLocation()
-    const nevigate = useNavigate()
+    const nevigate = useNavigate();
     const handelGoogleLogin = () => {
         GoogleLogin()
             .then(result => {

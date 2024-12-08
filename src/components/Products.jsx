@@ -8,35 +8,13 @@ const Products = () => {
         fetch('http://localhost:5000/product')
             .then(res => res.json())
             .then(data => {
-                const items = data.slice(0, 6);
-                setBrowser(items)
+                setBrowser(data)
                
             })
     }, [])
 
     console.log(browser);
     return (
-        // <div>
-        //     <h3 className='md:text-4xl my-3 text-center underline-offset-8 underline font-semibold text-red-400'>Products</h3>
-        //     <div className='md:grid grid-cols-3 py-3 my-3 gap-6'>
-        //         {
-        //             browser.map(brows => <div  className="card card-compact bg-base-100  shadow-xl">
-        //                 <figure>
-        //                     <img
-        //                         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-        //                         alt="Shoes" />
-        //                 </figure>
-        //                 <div className="card-body">
-        //                     <h2 className="card-title">Shoes!</h2>
-        //                     <p>If a dog chews shoes whose shoes does he choose?</p>
-        //                     <div className="card-actions justify-end">
-        //                         <button className="btn btn-primary">Buy Now</button>
-        //                     </div>
-        //                 </div>
-        //             </div>)
-        //         }
-        //     </div>
-        // </div>
         <div className="container mx-auto p-6">
             <h2 className="text-2xl font-bold text-center mb-6">Our Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

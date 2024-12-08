@@ -3,10 +3,25 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const AllProducts = () => {
     const loadedProducts = useLoaderData();
-    
+
     const [allProduct, setAllProduct] = useState(loadedProducts)
+
+
+    if (allProduct.length < 1) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
+
+
+
+    const handelsort =()=>{
+        const sort = [...allProduct].sort((a,b)=> a.prize -b.prize);
+        setAllProduct(sort)
+    }
     return (
         <div className='my-3 py-3'>
+            <div className='flex justify-end'>
+                <button onClick={handelsort} className="btn md:btn-md btn-sm hover:bg-green-500">sort</button>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
 

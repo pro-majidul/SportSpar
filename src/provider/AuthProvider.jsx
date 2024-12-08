@@ -14,17 +14,21 @@ const AuthProvider = ({ children }) => {
     }
 
     const LoginUser = (email, password) => {
+        setLoader(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     const CreateUser = (email, password) => {
+        setLoader(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const userLogOut = () => {
+        setLoader(true)
         return signOut(auth)
     }
 
     const updateUserProfile = (name, photo) => {
+        setLoader(true)
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo,
         })

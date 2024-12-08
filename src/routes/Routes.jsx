@@ -9,6 +9,8 @@ import AddEquipments from '../pages/AddEquipments';
 import AllProducts from '../pages/AllProducts';
 import MyEquipments from '../pages/MyEquipments';
 import Details from '../pages/Details';
+import Private from '../private/Private';
+import UpdateEquipment from '../pages/UpdateEquipment';
 
 const Routes = createBrowserRouter([
   {
@@ -36,16 +38,22 @@ const Routes = createBrowserRouter([
       {
         path: '/allRequirements',
         element: <AllProducts></AllProducts>,
-        loader: () => fetch('http://localhost:5000/product')
+        loader: () => fetch('http://localhost:5000/products')
       },
       {
         path: '/myEquipment',
-        element: <MyEquipments></MyEquipments>
+        element: <Private><MyEquipments></MyEquipments></Private>
+      },
+      {
+        path : '/updateEquipment/:id',
+        element: <Private> <UpdateEquipment></UpdateEquipment> </Private>
       },
       {
         path: '/details/:id',
+        // element: <Private><Details></Details></Private>,
         element: <Details></Details>,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+
       }
     ],
   }

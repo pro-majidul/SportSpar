@@ -105,8 +105,8 @@ const Navbar = () => {
                         <Tooltip id="my-tooltip" />
                         <button onClick={handelLogOut} className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Log Out</button>
                     </div> : <div className='flex items-center gap-1'>
-                        <NavLink to='register' className="md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Register</NavLink>
-                        <NavLink to='login' className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Login</NavLink>
+                        <NavLink to='register' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Register</NavLink>
+                        <NavLink to='login' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Login</NavLink>
                     </div>
                 }
             </div>

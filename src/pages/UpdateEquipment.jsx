@@ -2,82 +2,88 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const UpdateEquipment = () => {
     const { user } = useContext(AuthContext);
-    const { itemId } = useParams(); // Assuming you pass itemId in the route params
-    const [equipment, setEquipment] = useState(null);
+    const { id } = useParams();
+    const [equipment, setEquipment] = useState('');
+    const [deliveryDate, setDeliveryDate] = useState(new Date());
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (itemId) {
-            // Fetch existing equipment details if it's an update
-            fetch(`https://your-api-endpoint/equipment/${itemId}`)
+       
+            fetch(`http://localhost:5000/product/${id}`)
                 .then((res) => res.json())
-                .then((data) => setEquipment(data))
-                .catch((err) => console.log(err));
-        }
-    }, [itemId]);
+                .then((data) => {
+                    setEquipment(data);
+                    setDeliveryDate(new Date(data.delivery || new Date()));
+                })
+                .catch((err) => console.error(err));
+      
+    }, [id]);
 
-    const handelAddEquipments = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const item = form.item.value;
-        const category = form.category.value;
-        const descriptions = form.descriptions.value;
-        const rating = parseInt(form.rating.value);
-        const prize = parseInt(form.Prize.value);
-        const delivery = form.delivery.value;
-        const stock = parseInt(form.stack.value);
-        const useremail = form.email.value;
-        const username = form.username.value;
-        const photo = form.photo.value;
+    // const handleUpdateEquipment = (e) => {
+    //     e.preventDefault();
+    //     const form = e.target;
+    //     const item = form.item.value;
+    //     const category = form.category.value;
+    //     const descriptions = form.descriptions.value;
+    //     const rating = parseFloat(form.rating.value);
+    //     const prize = parseFloat(form.Prize.value);
+    //     const delivery = deliveryDate.toISOString().split('T')[0]; // Format date as yyyy-MM-dd
+    //     const stock = parseInt(form.stack.value);
+    //     const photo = form.photo.value;
+    //     const customization = form.customization.value;
 
-        const info = {
-            item,
-            category,
-            descriptions,
-            rating,
-            prize,
-            delivery,
-            stock,
-            useremail,
-            username,
-            photo,
-        };
+    //     const updatedInfo = {
+    //         item,
+    //         category,
+    //         descriptions,
+    //         rating,
+    //         prize,
+    //         delivery,
+    //         stock,
+    //         useremail: user.email,
+    //         username: user.displayName,
+    //         photo,
+    //         customization,
+    //     };
 
-        const method = itemId ? 'PUT' : 'POST';
-        const url = itemId
-            ? `https://your-api-endpoint/equipment/${itemId}`
-            : `https://your-api-endpoint/equipment`;
+    //     fetch(`http://localhost:5000/product/${id}`, {
+    //         method: 'PUT',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(updatedInfo),
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             if (data.modifiedCount > 0) {
+    //                 alert('Equipment Updated Successfully!');
+    //                 navigate('/myEquipment');
+    //             } else {
+    //                 alert('No changes were made.');
+    //             }
+    //         })
+    //         .catch((err) => alert('Failed to update equipment.'));
+    // };
 
-        fetch(url, {
-            method: method,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(info),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.insertedId || data.modifiedCount) {
-                    alert(itemId ? 'Equipment Updated Successfully!' : 'Equipment Added Successfully!');
-                    navigate('/my-equipment-list'); // Navigate to the equipment list page
-                }
-            })
-            .catch((err) => alert('Error adding/updating equipment.'));
-    };
+    // onSubmit={handleUpdateEquipment}
+
+    if (!equipment) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
 
     return (
         <div className="p-10">
             <Link to="/" className="flex items-center py-4">
-                <FaLongArrowAltLeft />
-                Back To Home
+                <FaLongArrowAltLeft /> Back To Home
             </Link>
             <div className="bg-[#F4F3F0] p-10">
                 <h3 className="text-xl md:text-3xl font-bold text-[#374151] text-center">
-                    {itemId ? 'Update Equipment' : 'Add Equipment'}
+                    Update Equipment
                 </h3>
-
-                <form onSubmit={handelAddEquipments}>
+                <form >
                     <div className="md:grid md:grid-cols-2 md:gap-10">
                         <div className="form-control">
                             <label className="label">
@@ -88,22 +94,26 @@ const UpdateEquipment = () => {
                                 name="item"
                                 placeholder="Enter Item Name"
                                 className="input input-bordered"
-                                defaultValue={equipment?.item || ''}
+                                defaultValue={equipment.item}
                                 required
                             />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Category Name</span>
+                                <span className="label-text">Category</span>
                             </label>
-                            <input
+                            <select
                                 name="category"
-                                type="text"
-                                placeholder="Enter Category Name"
-                                className="input input-bordered"
-                                defaultValue={equipment?.category || ''}
+                                className="select select-bordered w-full"
+                                defaultValue={equipment.category}
                                 required
-                            />
+                            >
+                                <option value="Bat">Bat</option>
+                                <option value="Ball">Ball</option>
+                                <option value="Jersey">Jersey</option>
+                                <option value="Shoes">Shoes</option>
+                                <option value="Badminton">Badminton</option>
+                            </select>
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -112,9 +122,9 @@ const UpdateEquipment = () => {
                             <input
                                 name="descriptions"
                                 type="text"
-                                placeholder="Enter Equipment Descriptions"
+                                placeholder="Enter Equipment Description"
                                 className="input input-bordered"
-                                defaultValue={equipment?.descriptions || ''}
+                                defaultValue={equipment.descriptions}
                                 required
                             />
                         </div>
@@ -127,7 +137,7 @@ const UpdateEquipment = () => {
                                 type="text"
                                 placeholder="Enter Rating"
                                 className="input input-bordered"
-                                defaultValue={equipment?.rating || ''}
+                                defaultValue={equipment.rating}
                                 required
                             />
                         </div>
@@ -140,20 +150,20 @@ const UpdateEquipment = () => {
                                 type="text"
                                 placeholder="Enter Prize"
                                 className="input input-bordered"
-                                defaultValue={equipment?.prize || ''}
+                                defaultValue={equipment.prize}
                                 required
                             />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Delivery Time</span>
+                                <span className="label-text">Processing Time</span>
                             </label>
-                            <input
-                                name="delivery"
-                                type="text"
-                                placeholder="Enter Delivery Time"
-                                className="input input-bordered"
-                                defaultValue={equipment?.delivery || ''}
+                            <DatePicker
+                                selected={deliveryDate}
+                                onChange={(date) => setDeliveryDate(date)}
+                                className="input input-bordered w-full"
+                                placeholderText="Select Delivery Date"
+                                dateFormat="yyyy-MM-dd"
                                 required
                             />
                         </div>
@@ -164,9 +174,9 @@ const UpdateEquipment = () => {
                             <input
                                 name="stack"
                                 type="text"
-                                placeholder="Enter Quantity"
+                                placeholder="Enter Stock Quantity"
                                 className="input input-bordered"
-                                defaultValue={equipment?.stock || ''}
+                                defaultValue={equipment.stock}
                                 required
                             />
                         </div>
@@ -175,63 +185,48 @@ const UpdateEquipment = () => {
                                 <span className="label-text">Customization</span>
                             </label>
                             <select
-                                className="select select-bordered w-full max-w-xs"
-                                defaultValue={equipment?.customization || ''}
+                                name="customization"
+                                className="select select-bordered w-full"
+                                defaultValue={equipment.customization}
+                                required
                             >
-                                <option disabled selected>
-                                    Customization
-                                </option>
-                                <option>Bat With Extra Grip</option>
-                                <option>Hit Paper</option>
+                                <option value="Bat With Extra Grip">Bat With Extra Grip</option>
+                                <option value="Hit Paper">Hit Paper</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                                <option value="Size 44">Size 44</option>
+                                <option value="Size 43">Size 43</option>
                             </select>
-
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">User Email</span>
                             </label>
-                            <input
-                                defaultValue={user?.email}
-                                readOnly
-                                name="email"
-                                type="email"
-                                placeholder="Enter User Email"
-                                className="input input-bordered"
-                                required
-                            />
+                            <input defaultValue={user?.email} readOnly name="email" type="email" placeholder="Enter User Email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">User Name</span>
                             </label>
-                            <input
-                                readOnly
-                                defaultValue={user?.displayName}
-                                name="username"
-                                type="text"
-                                placeholder="Enter User Name"
-                                className="input input-bordered"
-                                required
-                            />
+                            <input readOnly
+                                defaultValue={user?.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
                         </div>
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Photo-url</span>
+                            <span className="label-text">Photo URL</span>
                         </label>
                         <input
                             name="photo"
                             type="text"
                             placeholder="Enter Photo URL"
                             className="input input-bordered"
-                            defaultValue={equipment?.photo || ''}
+                            defaultValue={equipment.photo}
                             required
                         />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-[#D2B48C]">
-                            {itemId ? 'Update Equipment' : 'Add Equipment'}
-                        </button>
+                        <button className="btn bg-[#D2B48C]">Update Equipment</button>
                     </div>
                 </form>
             </div>
@@ -240,4 +235,3 @@ const UpdateEquipment = () => {
 };
 
 export default UpdateEquipment;
-
