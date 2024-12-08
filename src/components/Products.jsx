@@ -24,7 +24,7 @@ const Products = () => {
     }
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold text-center mb-6">Our Products</h2>
+            <h2 className="text-2xl md:text-4xl text-orange-600 underline underline-offset-8 font-bold text-center mb-6">Our Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {browser.map((product) => (
                     <div key={product._id} className="border p-4 rounded-lg shadow-lg">
