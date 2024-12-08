@@ -13,15 +13,20 @@ const UpdateEquipment = () => {
     const [deliveryDate, setDeliveryDate] = useState(new Date());
     const navigate = useNavigate();
 
+    const [loader , setLoader] = useState(true)
+
     useEffect(() => {
 
         fetch(`http://localhost:5000/products/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setEquipment(data);
+                setLoader(false)
                 setDeliveryDate(new Date(data.delivery || new Date()));
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                setLoader(false)
+                console.error(err)});
 
     }, [id]);
 
@@ -72,7 +77,7 @@ const UpdateEquipment = () => {
     };
 
 
-    if (!equipment) {
+    if (loader) {
         return <span className="loading loading-bars loading-lg"></span>
     }
 

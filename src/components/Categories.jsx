@@ -3,14 +3,25 @@ import React, { useEffect, useState } from 'react';
 const Categories = () => {
 
     const [categories, setCategories] = useState([])
+    const [loader, setLoader] = useState(true)
     useEffect(() => {
         fetch('http://localhost:5000/category')
             .then(res => res.json())
             .then(data => {
                 setCategories(data)
+                setLoader(false)
+            })
+            .catch(error => {
+                console.log(error);
+                setLoader(false)
             })
     }, [])
-    console.log(categories);
+
+
+    if (loader) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
+    
     return (
         <div>
             <h3 className='md:text-4xl my-3 text-center underline-offset-8 underline font-semibold text-red-400'>Categories</h3>

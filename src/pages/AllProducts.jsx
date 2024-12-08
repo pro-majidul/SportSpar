@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AllProducts = () => {
-    const loadedProducts = useLoaderData();
-    
 
-    const [allProduct, setAllProduct] = useState(loadedProducts)
+    const [allProduct, setAllProduct] = useState([])
+    const [loader, setLoader] = useState(true)
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products')
+            .then(res => res.json())
+            .then(data => {
+
+                setAllProduct(data)
+                setLoader(false)
+            })
+            .catch(() => {
+                setLoader(false)
+            })
+    }, [])
 
 
-    if (allProduct.length < 1) {
+    if (loader) {
         return <span className="loading loading-bars loading-lg"></span>
     }
 
 
 
-    const handelsort =()=>{
-        const sort = [...allProduct].sort((a,b)=> a.prize -b.prize);
+    const handelsort = () => {
+        const sort = [...allProduct].sort((a, b) => a.prize - b.prize);
         setAllProduct(sort)
     }
 
