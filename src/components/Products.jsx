@@ -4,17 +4,22 @@ import { Link } from 'react-router-dom';
 const Products = () => {
 
     const [browser, setBrowser] = useState([])
+    const [loader , setLoader]= useState(true)
     useEffect(() => {
         fetch('http://localhost:5000/product')
             .then(res => res.json())
             .then(data => {
                 setBrowser(data)
+                setLoader(false)
 
+            }).catch(error =>{
+                console.log(error);
+                setLoader(false)
             })
     }, [])
 
   
-    if (browser.length < 1) {
+    if (loader) {
         return <span className="loading loading-bars loading-lg"></span>
     }
     return (
