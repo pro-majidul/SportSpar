@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { toast } from 'react-toastify';
 
 const UpdateEquipment = () => {
     const { user } = useContext(AuthContext);
@@ -26,51 +27,50 @@ const UpdateEquipment = () => {
 
     console.log(equipment);
 
-    // const handleUpdateEquipment = (e) => {
-    //     e.preventDefault();
-    //     const form = e.target;
-    //     const item = form.item.value;
-    //     const category = form.category.value;
-    //     const descriptions = form.descriptions.value;
-    //     const rating = parseFloat(form.rating.value);
-    //     const prize = parseFloat(form.Prize.value);
-    //     const delivery = deliveryDate.toISOString().split('T')[0]; // Format date as yyyy-MM-dd
-    //     const stock = parseInt(form.stack.value);
-    //     const photo = form.photo.value;
-    //     const customization = form.customization.value;
+    const handleUpdateEquipment = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const item = form.item.value;
+        const category = form.category.value;
+        const descriptions = form.descriptions.value;
+        const rating = parseFloat(form.rating.value);
+        const prize = parseFloat(form.Prize.value);
+        const delivery = deliveryDate.toISOString().split('T')[0];
+        const stack = parseInt(form.stack.value);
+        const photo = form.photo.value;
+        const customization = form.customization.value;
 
-    //     const updatedInfo = {
-    //         item,
-    //         category,
-    //         descriptions,
-    //         rating,
-    //         prize,
-    //         delivery,
-    //         stock,
-    //         useremail: user.email,
-    //         username: user.displayName,
-    //         photo,
-    //         customization,
-    //     };
+        const updatedInfo = {
+            item,
+            category,
+            descriptions,
+            rating,
+            prize,
+            delivery,
+            stack,
+            useremail: user.email,
+            username: user.displayName,
+            photo,
+            customization,
+        };
 
-    //     fetch(`http://localhost:5000/product/${id}`, {
-    //         method: 'PUT',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify(updatedInfo),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             if (data.modifiedCount > 0) {
-    //                 alert('Equipment Updated Successfully!');
-    //                 navigate('/myEquipment');
-    //             } else {
-    //                 alert('No changes were made.');
-    //             }
-    //         })
-    //         .catch((err) => alert('Failed to update equipment.'));
-    // };
+        fetch(`http://localhost:5000/product/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedInfo),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Equipment Updated Successfully!');
+                    navigate('/myEquipment');
+                } else {
+                    toast.error('No changes were made.');
+                }
+            })
+            .catch((err) => toast.error('Failed to update equipment.'));
+    };
 
-    // onSubmit={handleUpdateEquipment}
 
     if (!equipment) {
         return <span className="loading loading-bars loading-lg"></span>
@@ -85,7 +85,7 @@ const UpdateEquipment = () => {
                 <h3 className="text-xl md:text-3xl font-bold text-[#374151] text-center">
                     Update Equipment
                 </h3>
-                <form >
+                <form onSubmit={handleUpdateEquipment}>
                     <div className="md:grid md:grid-cols-2 md:gap-10">
                         {equipment?.item &&
                             <div className="form-control">
@@ -171,6 +171,8 @@ const UpdateEquipment = () => {
                                 required
                             />
                         </div>
+
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Stock Status</span>
@@ -180,10 +182,11 @@ const UpdateEquipment = () => {
                                 type="text"
                                 placeholder="Enter Stock Quantity"
                                 className="input input-bordered"
-                                defaultValue={equipment.stock}
+                                defaultValue={equipment?.stack}
                                 required
                             />
                         </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Customization</span>
