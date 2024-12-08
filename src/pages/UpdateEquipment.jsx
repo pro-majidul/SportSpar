@@ -8,21 +8,23 @@ import 'react-datepicker/dist/react-datepicker.css';
 const UpdateEquipment = () => {
     const { user } = useContext(AuthContext);
     const { id } = useParams();
-    const [equipment, setEquipment] = useState('');
+    const [equipment, setEquipment] = useState(null);
     const [deliveryDate, setDeliveryDate] = useState(new Date());
     const navigate = useNavigate();
 
     useEffect(() => {
-       
-            fetch(`http://localhost:5000/product/${id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setEquipment(data);
-                    setDeliveryDate(new Date(data.delivery || new Date()));
-                })
-                .catch((err) => console.error(err));
-      
+
+        fetch(`http://localhost:5000/products/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setEquipment(data);
+                setDeliveryDate(new Date(data.delivery || new Date()));
+            })
+            .catch((err) => console.error(err));
+
     }, [id]);
+
+    console.log(equipment);
 
     // const handleUpdateEquipment = (e) => {
     //     e.preventDefault();
@@ -85,19 +87,21 @@ const UpdateEquipment = () => {
                 </h3>
                 <form >
                     <div className="md:grid md:grid-cols-2 md:gap-10">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Item Name</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="item"
-                                placeholder="Enter Item Name"
-                                className="input input-bordered"
-                                defaultValue={equipment.item}
-                                required
-                            />
-                        </div>
+                        {equipment?.item &&
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Item Name</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="item"
+                                    placeholder="Enter Item Name"
+                                    className="input input-bordered"
+                                    defaultValue={equipment?.item}
+                                    required
+                                />
+                            </div>
+                        }
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Category</span>

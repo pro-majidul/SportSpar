@@ -50,10 +50,15 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        {
+                            user && user ? <div className='items-center flex justify-center'><img referrerPolicy='no-referrer' data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName
+                            } className='h-10 w-10 rounded-full ' src={user?.photoURL} alt="" />  <Tooltip id="my-tooltip" /></div> : <NavLink to='register' className='btn'>Register</NavLink>
+                        }
                         <NavLink to='/' className='btn'>Home</NavLink>
                         <NavLink to='/allRequirements' className='btn'>All Sports Equipment</NavLink>
                         <NavLink to='/addEquipment' className='btn'>Add Equipment</NavLink>
                         <NavLink to='/myEquipment' className='btn'>My Equipment</NavLink>
+
 
                     </ul>
                 </div>
@@ -106,7 +111,7 @@ const Navbar = () => {
                         <button onClick={handelLogOut} className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Log Out</button>
                     </div> : <div className='flex items-center gap-1'>
                         <NavLink to='register' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Register</NavLink>
-                        <NavLink to='login' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Login</NavLink>
+                        <NavLink to='login' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold  border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Login</NavLink>
                     </div>
                 }
             </div>

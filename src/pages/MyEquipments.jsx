@@ -7,16 +7,25 @@ import Swal from 'sweetalert2';
 const MyEquipments = () => {
     const { user } = useContext(AuthContext);
     const [equipments, setEquipments] = useState([]);
+    const [loader , setLoader]= useState(true)
 
 
     useEffect(() => {
         fetch(`http://localhost:5000/product/${user.email}`)
             .then(res => res.json())
-            .then(data => setEquipments(data));
+            .then(data =>
+            {
+                setLoader(false)
+                setEquipments(data)
+            })
+            .catch(error =>{
+                console.log(error);
+                setLoader(false)
+            })
     }, [user?.email]);
 
 
-    if (equipments.length < 1) {
+    if (loader) {
         return <span className="loading loading-bars loading-lg"></span>
     }
     const handleDelete = (id) => {

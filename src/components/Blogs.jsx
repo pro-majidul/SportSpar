@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 const Blogs = () => {
 
-    const [blogs , setBlogs] = useState([])
-    useEffect(()=>{
+    const [blogs, setBlogs] = useState([])
+    useEffect(() => {
         fetch('http://localhost:5000/blogs')
-        .then(res=>res.json())
-        .then(data =>{
-            console.log(data);
-            setBlogs(data)
-        })
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                setBlogs(data)
+            })
+    }, [])
+
+    if (blogs.length < 1) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
 
     return (
         <div className="py-10">
@@ -30,7 +33,8 @@ const Blogs = () => {
                             <h3 className="font-bold text-xl mb-2">{blog.title}</h3>
                             <p className="text-gray-600 mb-4">{blog.excerpt}</p>
                             <a
-                                href={blog.link}
+                                href={blog.link} 
+                                target='_blank'
                                 className="text-blue-600 hover:underline"
                             >
                                 Read More →

@@ -9,11 +9,14 @@ const Products = () => {
             .then(res => res.json())
             .then(data => {
                 setBrowser(data)
-               
+
             })
     }, [])
 
-    console.log(browser);
+  
+    if (browser.length < 1) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
     return (
         <div className="container mx-auto p-6">
             <h2 className="text-2xl font-bold text-center mb-6">Our Products</h2>

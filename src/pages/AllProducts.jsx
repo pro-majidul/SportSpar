@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const AllProducts = () => {
     const loadedProducts = useLoaderData();
+    
 
     const [allProduct, setAllProduct] = useState(loadedProducts)
 
@@ -17,6 +18,7 @@ const AllProducts = () => {
         const sort = [...allProduct].sort((a,b)=> a.prize -b.prize);
         setAllProduct(sort)
     }
+
     return (
         <div className='my-3 py-3'>
             <div className='flex justify-end'>
