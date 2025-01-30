@@ -13,6 +13,7 @@ import Private from '../private/Private';
 import UpdateEquipment from '../pages/UpdateEquipment';
 import Support from '../pages/Support';
 import ContactUs from '../pages/ContactUs';
+import AboutUs from '../pages/AboutUs';
 
 const Routes = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const Routes = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path: '/about',
+        element: <AboutUs></AboutUs>
       },
       {
         path: '/contact',
