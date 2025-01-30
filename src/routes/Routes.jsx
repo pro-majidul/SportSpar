@@ -12,6 +12,7 @@ import Details from '../pages/Details';
 import Private from '../private/Private';
 import UpdateEquipment from '../pages/UpdateEquipment';
 import Support from '../pages/Support';
+import ContactUs from '../pages/ContactUs';
 
 const Routes = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const Routes = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },
+      {
+        path: '/contact',
+        element: <ContactUs></ContactUs>
       },
       {
         path: '/support',
