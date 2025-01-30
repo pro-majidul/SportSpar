@@ -6,10 +6,10 @@ import Footer from '../components/Footer';
 const MainLayouts = () => {
     return (
         <div>
-           <nav className='w-11/12 mx-auto'>
+           <nav className='w-full mx-auto max-w-7xl'>
             <Navbar></Navbar>
            </nav>
-           <main className='w-11/12 mx-auto min-h-[calc(100vh-232px)]'>
+           <main className='w-full mx-auto min-h-[calc(100vh-200px)]'>
             <Outlet></Outlet>
            </main>
            <footer>

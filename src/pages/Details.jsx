@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const Details = () => {
     const { id } = useParams();
     const [datas, setDatas] = useState({})
-    const [loader , setLoader]= useState(true)
+    const [loader, setLoader] = useState(true)
 
     useEffect(() => {
         fetch(`https://equi-sports-server-side-omega.vercel.app/products/${id}`)
@@ -13,24 +13,24 @@ const Details = () => {
             .then(data => {
                 setDatas(data)
                 setLoader(false)
-            }).catch(() =>{
+            }).catch(() => {
                 setLoader(false)
             })
     }, [])
 
-   
+
     if (loader) {
-        return <span className="loading loading-bars loading-lg"></span>
+        return <div className='flex items-center justify-center text-white min-h-screen'> <span className="loading loading-bars loading-lg"></span></div>;
     }
     return (
         <div
-            className="hero min-h-[calc(90vh-223px)]"
+            className="hero min-h-[calc(90vh-223px)] pt-28 mx-auto w-full max-w-7xl"
             style={{
                 backgroundImage: `url(${datas.photo})`,
             }}>
-            <div className="hero-overlay bg-opacity-60"></div>
+            <div className="hero-overlay bg-opacity-60 "></div>
             <div className="hero-content text-neutral-content text-center">
-                <div className="card text-black card-compact bg-base-100 max-w-lg shadow-xl">
+                <div className="card text-black card-compact bg-base-100 max-w-3xl shadow-xl">
                     <figure>
                         <img className=' w-full'
                             src={datas.photo}

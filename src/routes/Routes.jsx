@@ -11,9 +11,9 @@ import MyEquipments from '../pages/MyEquipments';
 import Details from '../pages/Details';
 import Private from '../private/Private';
 import UpdateEquipment from '../pages/UpdateEquipment';
-import Support from '../pages/Support';
-import ContactUs from '../pages/ContactUs';
 import AboutUs from '../pages/AboutUs';
+import ContactUs from '../pages/ContactUs';
+import Support from '../pages/Support';
 
 const Routes = createBrowserRouter([
   {
@@ -64,7 +64,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: '/details/:id',
-        element: <Private><Details></Details></Private>
+        element: <Details></Details>
       }
     ],
   }

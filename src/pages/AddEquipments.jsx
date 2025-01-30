@@ -44,22 +44,22 @@ const AddEquipments = () => {
     }
 
     return (
-        <div className=" p-10">
-            <Link to='/' className="flex items-center  py-4"> <FaLongArrowAltLeft />Back To Home </Link>
-            <div className="bg-[#F4F3F0] p-10">
-                <h3 className="text-xl md:text-3xl font-bold text-[#374151] text-center">Add Equipments</h3>
+        <div className="pt-28 md:pt-20 p-4 w-full max-w-7xl mx-auto">
+            <Link to='/' className="flex items-center btn w-44 my-4 py-4"> <FaLongArrowAltLeft />Back To Home </Link>
+            <div className="bg-gray-900 p-2 md:p-10">
+                <h3 className="text-xl md:text-3xl font-bold my-4 text-white text-center">Add Equipments</h3>
 
                 <form onSubmit={handelAddEquipments}>
-                    <div className="md:grid md:grid-cols-2 md:gap-10">
+                    <div className="md:grid md:grid-cols-2 py-10 md:gap-10">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Item Name</span>
+                                <span className="label-text text-white">Item Name</span>
                             </label>
                             <input type="text" name="item" placeholder="Enter Item Name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Category</span>
+                                <span className="label-text text-white">Category</span>
                             </label>
                             <select name="category" className="select select-bordered w-full" required>
                                 <option value="" disabled selected>
@@ -74,26 +74,26 @@ const AddEquipments = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Descriptions</span>
+                                <span className="label-text text-white">Descriptions</span>
                             </label>
                             <input name="descriptions" type="text" placeholder="Enter Equipments Descriptions" className="input input-bordered" required />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Rating</span>
+                                <span className="label-text text-white">Rating</span>
                             </label>
                             <input name="rating" type="text" placeholder="Enter Rating" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Prize</span>
+                                <span className="label-text text-white">Prize</span>
                             </label>
                             <input name="Prize" type="text" placeholder="Enter Prize" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Processing Time</span>
+                                <span className="label-text text-white">Processing Time</span>
                             </label>
                             <DatePicker
                                 selected={deliveryDate}
@@ -106,13 +106,13 @@ const AddEquipments = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Stock Status </span>
+                                <span className="label-text text-white">Stock Status </span>
                             </label>
                             <input name="stack" type="text" placeholder="Enter Available Product Quentity" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Customization</span>
+                                <span className="label-text text-white">Customization</span>
                             </label>
                             <select name="customization" className="select select-bordered w-full" required>
                                 <option value="" disabled selected>
@@ -130,13 +130,13 @@ const AddEquipments = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">User Email</span>
+                                <span className="label-text text-white">User Email</span>
                             </label>
                             <input defaultValue={user?.email} readOnly name="email" type="email" placeholder="Enter User Email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">User Name</span>
+                                <span className="label-text text-white">User Name</span>
                             </label>
                             <input readOnly
                                 defaultValue={user?.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
@@ -144,7 +144,7 @@ const AddEquipments = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Photo-url</span>
+                            <span className="label-text text-white">Photo-url</span>
                         </label>
                         <input name="photo" type="text" placeholder="Enter Photo URL" className="input input-bordered" required />
                     </div>

@@ -5,7 +5,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { toast } from 'react-toastify';
-
+    
 const UpdateEquipment = () => {
     const { user } = useContext(AuthContext);
     const { id } = useParams();
@@ -13,7 +13,7 @@ const UpdateEquipment = () => {
     const [deliveryDate, setDeliveryDate] = useState(new Date());
     const navigate = useNavigate();
 
-    const [loader , setLoader] = useState(true)
+    const [loader, setLoader] = useState(true)
 
     useEffect(() => {
 
@@ -26,7 +26,8 @@ const UpdateEquipment = () => {
             })
             .catch((err) => {
                 setLoader(false)
-                console.error(err)});
+                console.error(err)
+            });
 
     }, [id]);
 
@@ -78,24 +79,25 @@ const UpdateEquipment = () => {
 
 
     if (loader) {
-        return <span className="loading loading-bars loading-lg"></span>
+        return <div className='flex items-center justify-center text-white min-h-screen'> <span className="loading loading-bars loading-lg"></span></div>;
     }
 
     return (
-        <div className="p-10">
-            <Link to="/" className="flex items-center py-4">
+        <div className="pt-28 md:pt-20 p-4 w-full max-w-7xl mx-auto">
+            <Link to="/" className="flex items-center btn w-44 my-5 py-4">
                 <FaLongArrowAltLeft /> Back To Home
             </Link>
-            <div className="bg-[#F4F3F0] p-10">
-                <h3 className="text-xl md:text-3xl font-bold text-[#374151] text-center">
+
+            <div className="bg-gray-900 md:p-10 p-4">
+                <h3 className="text-xl md:text-3xl font-bold text-white text-center">
                     Update Equipment
                 </h3>
                 <form onSubmit={handleUpdateEquipment}>
-                    <div className="md:grid md:grid-cols-2 md:gap-10">
+                    <div className="md:grid md:grid-cols-2 py-10 md:gap-10">
                         {equipment?.item &&
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Item Name</span>
+                                    <span className="label-text text-white">Item Name</span>
                                 </label>
                                 <input
                                     type="text"
@@ -109,7 +111,7 @@ const UpdateEquipment = () => {
                         }
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Category</span>
+                                <span className="label-text text-white">Category</span>
                             </label>
                             <select
                                 name="category"
@@ -126,7 +128,7 @@ const UpdateEquipment = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Descriptions</span>
+                                <span className="label-text text-white">Descriptions</span>
                             </label>
                             <input
                                 name="descriptions"
@@ -139,7 +141,7 @@ const UpdateEquipment = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Rating</span>
+                                <span className="label-text text-white">Rating</span>
                             </label>
                             <input
                                 name="rating"
@@ -152,7 +154,7 @@ const UpdateEquipment = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Prize</span>
+                                <span className="label-text text-white">Prize</span>
                             </label>
                             <input
                                 name="Prize"
@@ -165,7 +167,7 @@ const UpdateEquipment = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Processing Time</span>
+                                <span className="label-text text-white">Processing Time</span>
                             </label>
                             <DatePicker
                                 selected={deliveryDate}
@@ -180,7 +182,7 @@ const UpdateEquipment = () => {
 
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Stock Status</span>
+                                <span className="label-text text-white">Stock Status</span>
                             </label>
                             <input
                                 name="stack"
@@ -194,7 +196,7 @@ const UpdateEquipment = () => {
 
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Customization</span>
+                                <span className="label-text text-white">Customization</span>
                             </label>
                             <select
                                 name="customization"
@@ -212,13 +214,13 @@ const UpdateEquipment = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">User Email</span>
+                                <span className="label-text text-white">User Email</span>
                             </label>
                             <input defaultValue={user?.email} readOnly name="email" type="email" placeholder="Enter User Email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">User Name</span>
+                                <span className="label-text text-white">User Name</span>
                             </label>
                             <input readOnly
                                 defaultValue={user?.displayName} name="username" type="text" placeholder="Enter User Name" className="input input-bordered" required />
@@ -226,7 +228,7 @@ const UpdateEquipment = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Photo URL</span>
+                            <span className="label-text text-white">Photo URL</span>
                         </label>
                         <input
                             name="photo"
@@ -242,6 +244,7 @@ const UpdateEquipment = () => {
                     </div>
                 </form>
             </div>
+
         </div>
     );
 };

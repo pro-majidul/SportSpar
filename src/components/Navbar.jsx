@@ -30,7 +30,7 @@ const Navbar = () => {
     }, [theme])
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-black bg-opacity-45 fixed z-10 top-0 w-full max-w-7xl mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,27 +49,38 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-[#0D0D1B] rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {
                             user && user ? <div className='items-center flex justify-center'><img referrerPolicy='no-referrer' data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName
-                            } className='h-10 w-10 rounded-full ' src={user?.photoURL} alt="" />  <Tooltip id="my-tooltip" /></div> : <NavLink to='register' className='btn'>Register</NavLink>
+                            } className='h-10 w-10 rounded-full ' src={user?.photoURL} alt="" />  <Tooltip id="my-tooltip" /></div> : <NavLink to='register' className={({ isActive }) => isActive ? 'text-green-500 hover:text-green-300 text-lg  ' : 'text-white hover:text-green-300 text-lg  '}>Register</NavLink>
                         }
-                        <NavLink to='/' className='btn'>Home</NavLink>
-                        <NavLink to='/allRequirements' className='btn'>All Sports Equipment</NavLink>
-                        <NavLink to='/addEquipment' className='btn'>Add Equipment</NavLink>
-                        <NavLink to='/myEquipment' className='btn'>My Equipment</NavLink>
-
+                        <NavLink to='/' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300'}>Home</NavLink>
+                        <NavLink to='/allRequirements' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300 '}>All Sports </NavLink>
+                        {user && <>
+                            <NavLink to='/addEquipment' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300 '}>Add Equipment</NavLink>
+                            <NavLink to='/myEquipment' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300 '}>My Equipment</NavLink>
+                        </>}
+                        <NavLink to='/about' className={({ isActive }) => isActive ? 'font-medium text-lg text-green-500 hover:text-green-300 ' : ' font-medium text-lg text-white  hover:text-green-300 '}>About Us</NavLink>
+                        <NavLink to='/contact' className={({ isActive }) => isActive ? 'font-medium text-lg text-green-500 hover:text-green-300 ' : ' font-medium text-lg text-white  hover:text-green-300 '}>Contact Us</NavLink>
+                        <NavLink to='/support' className={({ isActive }) => isActive ? 'font-medium text-lg text-green-500 hover:text-green-300 ' : ' font-medium text-lg text-white  hover:text-green-300 '}>Support</NavLink>
 
                     </ul>
                 </div>
-                <NavLink to='/' className="md:text-3xl md:font-bold text-xl">Sports Spar</NavLink>
+                <NavLink to='/' className="md:text-3xl md:font-bold text-xl text-white">Sports Spar</NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal gap-3 px-1">
-                    <NavLink to='/' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Home</NavLink>
-                    <NavLink to='/allRequirements' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>All Sports Equipment</NavLink>
-                    <NavLink to='/addEquipment' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Add Equipment</NavLink>
-                    <NavLink to='/myEquipment' className={({ isActive }) => isActive ? 'px-4 py-3 font-semibold border border-1 rounded-xl bg-green-500' : 'px-4 py-3 font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>My Equipment</NavLink>
+                <ul className="menu menu-horizontal md:gap-3 md:px-1">
+                    <NavLink to='/' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300'}>Home</NavLink>
+                    <NavLink to='/allRequirements' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300 '}>All Sports</NavLink>
+                    {
+                        user && <>
+                            <NavLink to='/addEquipment' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300 '}>Add Equipment</NavLink>
+                            <NavLink to='/myEquipment' className={({ isActive }) => isActive ? ' font-medium text-lg text-green-500 hover:text-green-300' : ' font-medium text-lg text-white hover:text-green-300 '}>My Equipment</NavLink>
+                        </>
+                    }
+                    <NavLink to='/about' className={({ isActive }) => isActive ? 'font-medium text-lg text-green-500 hover:text-green-300 ' : ' font-medium text-lg text-white  hover:text-green-300 '}>About Us</NavLink>
+                    <NavLink to='/contact' className={({ isActive }) => isActive ? 'font-medium text-lg text-green-500 hover:text-green-300 ' : ' font-medium text-lg text-white  hover:text-green-300 '}>Contact Us</NavLink>
+                    <NavLink to='/support' className={({ isActive }) => isActive ? 'font-medium text-lg text-green-500 hover:text-green-300 ' : ' font-medium text-lg text-white  hover:text-green-300 '}>Support</NavLink>
 
                 </ul>
             </div>
@@ -104,14 +115,14 @@ const Navbar = () => {
                     </svg>
                 </label>
                 {
-                    user && user ? <div className='flex items-center gap-1'>
+                    user && user ? <div className='flex items-center gap-2'>
                         <img referrerPolicy='no-referrer' data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName
                         } className='h-10 w-10 rounded-full hidden md:block' src={user?.photoURL} alt="" />
                         <Tooltip id="my-tooltip" />
-                        <button onClick={handelLogOut} className="md:px-4 px-3 py-1 md:py-3 md:font-semibold border border-1 rounded-xl bg-gray-200 hover:bg-green-500">Log Out</button>
-                    </div> : <div className='flex items-center gap-1'>
-                        <NavLink to='register' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Register</NavLink>
-                        <NavLink to='login' className={({ isActive }) => isActive ? 'md:px-4 px-3 py-1 md:py-3 md:font-semibold hidden md:block border border-1 rounded-xl bg-green-500' : 'md:px-4 px-3 py-1 md:py-3 md:font-semibold  border border-1 rounded-xl bg-gray-200 hover:bg-green-500'}>Login</NavLink>
+                        <button onClick={handelLogOut} className="text-white hover:text-green-300 ">Log Out</button>
+                    </div> : <div className='flex items-center gap-2'>
+                        <NavLink to='register' className={({ isActive }) => isActive ? 'text-green-500 hover:text-green-300 text-lg hidden md:block ' : 'text-white hover:text-green-300 text-lg hidden md:block  '}>Register</NavLink>
+                        <NavLink to='login' className={({ isActive }) => isActive ? 'text-green-500 hover:text-green-300 text-lg hidden md:block ' : 'text-white hover:text-green-300 text-lg hidden md:block  '}>Login</NavLink>
                     </div>
                 }
             </div>
